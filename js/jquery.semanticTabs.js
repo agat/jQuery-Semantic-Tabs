@@ -1,17 +1,17 @@
 /*
- * jQuery sematicTabs
+ * jQuery semanticTabs
  * @copyright Aleksej Romanovskij http://agat.in/jquery-semantictabs/
- * @version 0.1
+ * @version 0.1.1
  */
 
 (function($){
-$.fn.sematicTabs = function(options) {
+$.fn['semanticTabs'] = function(options) {
 	var defaults = {
-		tabSelector: '> dt',
-		bodySelector: '> dd',
-		tabsCSSClass: 'b-tabs',
-		tabsNavSuffix: '-nav',
-		tabsNavActiveSuffix: '-cur'
+		'tabSelector': '> dt',
+		'bodySelector': '> dd',
+		'tabsCSSClass': 'b-tabs',
+		'tabsNavSuffix': '-nav',
+		'tabsNavActiveSuffix': '-cur'
 	};
 	
 	options = $.extend(defaults, options);
@@ -19,33 +19,37 @@ $.fn.sematicTabs = function(options) {
 	return this.each(function() {
 		var obj = $(this),
 			sObjCSSClass = obj.attr('class').split(' ')[0],
-			cNav = sObjCSSClass + options.tabsNavSuffix;
-			cNavActive = sObjCSSClass + options.tabsNavActiveSuffix;
+			sObjNavCSSClass,
+			sObjNavCSSClassActive;
 		
 		if(sObjCSSClass == '') {
-			obj.attr('class') = sObjCSSClass;
+			sObjCSSClass = options['tabsCSSClass'];
+			obj.addClass(sObjCSSClass);
 		}
 		
+		sObjNavCSSClass = sObjCSSClass + options['tabsNavSuffix'];
+		sObjNavCSSClassActive = sObjCSSClass + options['tabsNavActiveSuffix'];
+		
 		// Tabs Navigation
-		var strTabsNav = "<ul class='" + cNav + "'>";
-		obj.find(options.tabSelector).each(function(){
+		var strTabsNav = "<ul class='" + sObjNavCSSClass + "'>";
+		obj.find(options['tabSelector']).each(function(){
 			strTabsNav += '<li><span>' + $(this).html() + '</span></li>';
 		});
 		strTabsNav += '</ul>';
 		
 		// Change DOM
-		obj.prepend(strTabsNav).find(options.tabSelector).remove().end()
-			.find('> .' + cNav + ' li:first-child').addClass(cNavActive).end()
-			.find(options.bodySelector).hide().filter(':eq(0)').show();
+		obj.prepend(strTabsNav).find(options['tabSelector']).remove().end()
+			.find('> .' + sObjNavCSSClass + ' li:first-child').addClass(sObjNavCSSClassActive).end()
+			.find(options['bodySelector']).hide().filter(':eq(0)').show();
 		
 		// Navigation Events
-		obj.find('> .' + cNav).click(function(e) {
+		obj.find('> .' + sObjNavCSSClass).click(function(e) {
 			var $nav = $(e.target).closest('li');
 			
-			if(!$nav.hasClass(sObjCSSClass + options.tabsNavActiveSuffix)) {
-				$nav.addClass(sObjCSSClass + options.tabsNavActiveSuffix).siblings().removeClass(sObjCSSClass + options.tabsNavActiveSuffix)
+			if(!$nav.hasClass(sObjNavCSSClassActive)) {
+				$nav.addClass(sObjNavCSSClassActive).siblings().removeClass(sObjNavCSSClassActive)
 					.closest('.' + sObjCSSClass)
-					.find(options.bodySelector).hide().filter(':eq(' + $nav.index() + ')').show();
+					.find(options['bodySelector']).hide().filter(':eq(' + $nav.index() + ')').show();
 				
 			}
 		});
