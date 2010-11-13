@@ -18,7 +18,7 @@ CSS-селектор для выборки элементов c содержим
 
     // навигационный список составляется из тагов заголовков(h2),
     // а содержимое вкладки заключено в div-таг
-    $('div.b-tabs').semanticTabs({
+    $('.b-tabs').semanticTabs({
     	tabSelector: '> h2',
     	bodySelector: '> div'
     });
@@ -68,6 +68,7 @@ CSS-класс, который будет применён к элементу �
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>	
 	<script src="http://github.com/agat/jQuery-Semantic-Tabs/raw/master/js/jquery.semanticTabs.min.js"></script>
+	
 	<script>
 	$(function() {
 		$('.b-tabs').semanticTabs();
