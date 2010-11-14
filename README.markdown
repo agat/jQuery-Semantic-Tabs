@@ -46,6 +46,7 @@ CSS-класс, который будет применён к элементу �
 		border-width: 1px 1px 0 1px;
 		-moz-border-radius: 4px 4px 0 0;
 		-webkit-border-radius: 4px 4px 0 0;
+		border-radius: 4px 4px 0 0;
 	}
 	.b-tabs-nav li {
 		float: left;
