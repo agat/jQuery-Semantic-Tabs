@@ -203,5 +203,94 @@ $(function(){
 		equal($('#my-nav-2 dd:first').css('display'), 'block', 'First tab in Content is not open of my-nav-2');
 		equal($('#my-nav-3 dd:first').css('display'), 'block', 'First tab in Content is not open of my-nav-3');
 	});
+	
+	test('Initialization with Class', function(){
+		expect(8);
+
+		$('#my-nav-4').semanticTabs();
+		
+		equal($('#my-nav-4').hasClass('other-tabs'), true, 'No class .other-tabs on main object');
+		
+		equal($('#my-nav-4').hasClass('b-tabs'), false, 'Class .b-tabs on main object found');
+
+		equal($('#my-nav-4 ul.other-tabs-nav').length, 1, 'Navigation UL block was not found');
+
+		equal($('#my-nav-4 ul.other-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found');
+
+		equal($('#my-nav-4 ul.other-tabs-nav li:first').hasClass('other-tabs-cur'), true, 'First tab in Navigation is not open');
+
+		var lis = $('#my-nav-4 ul.other-tabs-nav li');
+		var anyHasClass = false;
+		$.each(lis, function(i, obj){
+			if (i > 0) {
+				if ($(obj).hasClass('other-tabs-cur')) {
+					anyHasClass = true;
+				}
+			}
+		});
+
+		equal(anyHasClass, false, 'Other Navigation is open');
+
+		equal($('#my-nav-4 dd:first').css('display'), 'block', 'First tab in Content is not open');
+
+		var dds = $('#my-nav-4 dd');
+		var anyNonHidden = false;
+		$.each(dds, function(i, obj){
+			console.log(i);
+			if (i > 0) {
+				if ($(obj).css('display') !== 'none') {
+					anyNonHidden = true;
+				}
+			}
+		});
+
+		equal(anyNonHidden, false, 'Other blocks not hidden');
+
+	});
+	
+	test('Click with Class', function(){
+		
+		expect(6);
+		
+		$('#my-nav-4').semanticTabs();
+		
+		equal($('#my-nav-4').hasClass('other-tabs'), true, 'No class .other-tabs on main object');
+
+		equal($('#my-nav-4 ul.other-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found');
+
+		var nextTab = $('#my-nav-4 ul.other-tabs-nav li');
+
+		$(nextTab[1]).trigger('click');
+		
+		equal($(nextTab[1]).hasClass('other-tabs-cur'), true, 'Clicked tab not selected');
+
+		var lis = $('#my-nav-4 ul.other-tabs-nav li');
+		var anyHasClass = false;
+		$.each(lis, function(i, obj){
+			if (i !== 1) {
+				if ($(obj).hasClass('other-tabs-cur')) {
+					anyHasClass = true;
+				}
+			}
+		});
+
+		equal(anyHasClass, false, 'Other Navigation is open');
+
+		var dds = $('#my-nav-4 dd');
+		
+		equal($(dds[1]).css('display'), 'block', 'Block with content not showed up');
+		
+		var anyNonHidden = false;
+		$.each(dds, function(i, obj){
+			console.log(i);
+			if (i !== 1) {
+				if ($(obj).css('display') !== 'none') {
+					anyNonHidden = true;
+				}
+			}
+		});
+
+		equal(anyNonHidden, false, 'Other blocks not hidden');
+	});
 
 });
