@@ -133,5 +133,54 @@ $(function(){
 		equal(anyNonHidden, false, 'Other blocks not hidden');
 
 	});
+	
+	test('Custom Click', function(){
+		
+		expect(6);
+		
+		$('#my-nav-1').semanticTabs({
+			'tabsCSSClass': 'my-super-tabs',
+			'tabsNavSuffix': '-van',
+			'tabsNavActiveSuffix': '-ruc'
+		});
+		
+		equal($('#my-nav-1').hasClass('my-super-tabs'), true, 'No class .my-super-tabson main object');
+
+		equal($('#my-nav-1 ul.my-super-tabs-van li').length, 3, 'Navigation UL block\'s LI was not found');
+
+		var nextTab = $('#my-nav-1 ul.my-super-tabs-van li');
+
+		$(nextTab[1]).trigger('click');
+		
+		equal($(nextTab[1]).hasClass('my-super-tabs-ruc'), true, 'Clicked tab not selected');
+
+		var lis = $('#my-nav-1 ul.my-super-tabs-van li');
+		var anyHasClass = false;
+		$.each(lis, function(i, obj){
+			if (i !== 1) {
+				if ($(obj).hasClass('my-super-tabs-ruc')) {
+					anyHasClass = true;
+				}
+			}
+		});
+
+		equal(anyHasClass, false, 'Other Navigation is open');
+
+		var dds = $('#my-nav-1 dd');
+		
+		equal($(dds[1]).css('display'), 'block', 'Block with content not showed up');
+		
+		var anyNonHidden = false;
+		$.each(dds, function(i, obj){
+			console.log(i);
+			if (i !== 1) {
+				if ($(obj).css('display') !== 'none') {
+					anyNonHidden = true;
+				}
+			}
+		});
+
+		equal(anyNonHidden, false, 'Other blocks not hidden');
+	});
 
 });
