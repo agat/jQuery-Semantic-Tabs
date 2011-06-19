@@ -45,7 +45,7 @@ $(function(){
 
 	test('Click', function(){
 		
-		expect(5);
+		expect(6);
 		
 		$('#my-nav-1').semanticTabs();
 		
@@ -72,6 +72,9 @@ $(function(){
 		equal(anyHasClass, false, 'Other Navigation is open');
 
 		var dds = $('#my-nav-1 dd');
+		
+		equal($(dds[1]).css('display'), 'block', 'Block with content not showed up');
+		
 		var anyNonHidden = false;
 		$.each(dds, function(i, obj){
 			console.log(i);
