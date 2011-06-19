@@ -45,7 +45,7 @@ $(function(){
 
 	test('Click', function(){
 		
-		expect(4);
+		expect(5);
 		
 		$('#my-nav-1').semanticTabs();
 		
@@ -56,6 +56,8 @@ $(function(){
 		var nextTab = $('#my-nav-1 ul.b-tabs-nav li');
 
 		$(nextTab[1]).trigger('click');
+		
+		equal($(nextTab[1]).hasClass('b-tabs-cur'), true, 'Clicked tab not selected');
 
 		var lis = $('#my-nav-1 ul.b-tabs-nav li');
 		var anyHasClass = false;
