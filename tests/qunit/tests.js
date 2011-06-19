@@ -182,5 +182,26 @@ $(function(){
 
 		equal(anyNonHidden, false, 'Other blocks not hidden');
 	});
+	
+	test('Group Init', function(){
+		expect(10);
+		
+		$('#my-nav-2, #my-nav-3').semanticTabs();
+		
+		equal($('#my-nav-2').hasClass('b-tabs'), true, 'No class .b-tabs on main object of my-nav-2');
+		equal($('#my-nav-3').hasClass('b-tabs'), true, 'No class .b-tabs on main object of my-nav-3');
+		
+		equal($('#my-nav-2 ul.b-tabs-nav').length, 1, 'Navigation UL block was not found of my-nav-2');
+		equal($('#my-nav-3 ul.b-tabs-nav').length, 1, 'Navigation UL block was not found of my-nav-3');
+
+		equal($('#my-nav-2 ul.b-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found of my-nav-2');
+		equal($('#my-nav-3 ul.b-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found of my-nav-3');
+		
+		equal($('#my-nav-2 ul.b-tabs-nav li:first').hasClass('b-tabs-cur'), true, 'First tab in Navigation is not open of my-nav-2');
+		equal($('#my-nav-3 ul.b-tabs-nav li:first').hasClass('b-tabs-cur'), true, 'First tab in Navigation is not open of my-nav-3');
+		
+		equal($('#my-nav-2 dd:first').css('display'), 'block', 'First tab in Content is not open of my-nav-2');
+		equal($('#my-nav-3 dd:first').css('display'), 'block', 'First tab in Content is not open of my-nav-3');
+	});
 
 });
