@@ -2,9 +2,11 @@ $(function(){
 	module("Semantic Tabs");
 
 	test('Initialization', function(){
-		expect(6);
+		expect(7);
 
 		$('#my-nav-1').semanticTabs();
+		
+		equal($('#my-nav-1').hasClass('b-tabs'), true, 'No class .b-tabs on main object');
 
 		equal($('#my-nav-1 ul.b-tabs-nav').length, 1, 'Navigation UL block was not found');
 
@@ -42,7 +44,12 @@ $(function(){
 	});
 
 	test('Click', function(){
+		
+		expect(4);
+		
 		$('#my-nav-1').semanticTabs();
+		
+		equal($('#my-nav-1').hasClass('b-tabs'), true, 'No class .b-tabs on main object');
 
 		equal($('#my-nav-1 ul.b-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found');
 
