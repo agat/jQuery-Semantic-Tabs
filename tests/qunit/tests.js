@@ -4,15 +4,15 @@ $(function(){
 	test('Initialization', function(){
 		expect(6);
 
-		$('.b-tabs').semanticTabs();
+		$('#my-nav-1').semanticTabs();
 
-		equal($('.b-tabs ul.b-tabs-nav').length, 1, 'Navigation UL block was not found');
+		equal($('#my-nav-1 ul.b-tabs-nav').length, 1, 'Navigation UL block was not found');
 
-		equal($('.b-tabs ul.b-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found');
+		equal($('#my-nav-1 ul.b-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found');
 
-		equal($('.b-tabs ul.b-tabs-nav li:first').hasClass('b-tabs-cur'), true, 'First tab in Navigation is not open');
+		equal($('#my-nav-1 ul.b-tabs-nav li:first').hasClass('b-tabs-cur'), true, 'First tab in Navigation is not open');
 
-		var lis = $('.b-tabs ul.b-tabs-nav li');
+		var lis = $('#my-nav-1 ul.b-tabs-nav li');
 		var anyHasClass = false;
 		$.each(lis, function(i, obj){
 			if (i > 0) {
@@ -24,9 +24,9 @@ $(function(){
 
 		equal(anyHasClass, false, 'Other Navigation is open');
 
-		equal($('.b-tabs dd:first').css('display'), 'block', 'First tab in Content is not open');
+		equal($('#my-nav-1 dd:first').css('display'), 'block', 'First tab in Content is not open');
 
-		var dds = $('.b-tabs dd');
+		var dds = $('#my-nav-1 dd');
 		var anyNonHidden = false;
 		$.each(dds, function(i, obj){
 			console.log(i);
@@ -42,15 +42,15 @@ $(function(){
 	});
 
 	test('Click', function(){
-		$('.b-tabs').semanticTabs();
+		$('#my-nav-1').semanticTabs();
 
-		equal($('.b-tabs ul.b-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found');
+		equal($('#my-nav-1 ul.b-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found');
 
-		var nextTab = $('.b-tabs ul.b-tabs-nav li');
+		var nextTab = $('#my-nav-1 ul.b-tabs-nav li');
 
 		$(nextTab[1]).trigger('click');
 
-		var lis = $('.b-tabs ul.b-tabs-nav li');
+		var lis = $('#my-nav-1 ul.b-tabs-nav li');
 		var anyHasClass = false;
 		$.each(lis, function(i, obj){
 			if (i !== 1) {
@@ -62,7 +62,7 @@ $(function(){
 
 		equal(anyHasClass, false, 'Other Navigation is open');
 
-		var dds = $('.b-tabs dd');
+		var dds = $('#my-nav-1 dd');
 		var anyNonHidden = false;
 		$.each(dds, function(i, obj){
 			console.log(i);
