@@ -292,5 +292,49 @@ $(function(){
 
 		equal(anyNonHidden, false, 'Other blocks not hidden');
 	});
+	
+	test('Custom Elements', function(){
+		expect(7);
+
+		$('#c-nav-1').semanticTabs({
+			'tabSelector': '> h3',
+			'bodySelector': '> div'
+		});
+		
+		equal($('#c-nav-1').hasClass('b-tabs'), true, 'No class .b-tabs on main object');
+
+		equal($('#c-nav-1 ul.b-tabs-nav').length, 1, 'Navigation UL block was not found');
+
+		equal($('#c-nav-1 ul.b-tabs-nav li').length, 3, 'Navigation UL block\'s LI was not found');
+
+		equal($('#c-nav-1 ul.b-tabs-nav li:first').hasClass('b-tabs-cur'), true, 'First tab in Navigation is not open');
+
+		var lis = $('#c-nav-1 ul.b-tabs-nav li');
+		var anyHasClass = false;
+		$.each(lis, function(i, obj){
+			if (i > 0) {
+				if ($(obj).hasClass('b-tabs-cur')) {
+					anyHasClass = true;
+				}
+			}
+		});
+
+		equal(anyHasClass, false, 'Other Navigation is open');
+
+		equal($('#c-nav-1 div:first').css('display'), 'block', 'First tab in Content is not open');
+
+		var dds = $('#c-nav-1 div');
+		var anyNonHidden = false;
+		$.each(dds, function(i, obj){
+			console.log(i);
+			if (i > 0) {
+				if ($(obj).css('display') !== 'none') {
+					anyNonHidden = true;
+				}
+			}
+		});
+
+		equal(anyNonHidden, false, 'Other blocks not hidden');
+	});
 
 });
