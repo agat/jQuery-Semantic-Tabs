@@ -1,0 +1,31 @@
+/* Tabs block
+------------------------------ */
+.b-tabs, .other-tabs { margin: 0 0 20px 0; }
+.b-tabs-nav, .other-tabs-nav {
+	overflow: hidden;
+	margin: 0 0 9px 0;
+	background: #ccc;
+	padding: 4px 4px 0 4px;
+	border-width: 1px 1px 0 1px;
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+}
+.b-tabs-nav li, .other-tabs-nav li {
+	float: left;
+	margin: 0 4px 0 0;
+	list-style: none;
+	padding: 0 16px;
+	line-height: 28px;
+	background: #eee;
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+	color: #333;
+	cursor: pointer;
+}
+.b-tabs .b-tabs-cur, .other-tabs .other-tabs-cur {
+	background: #f2f2f5;
+	color: #000;
+	font-weight: bold;
+}
